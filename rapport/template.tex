@@ -1,0 +1,200 @@
+\documentclass[a4paper,12pt,pdftex]{article}
+
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\tiny
+}
+\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
+
+\def\name{Ole Henrik Paulsen}
+\def\studentnumber{130572}
+\def\course{IMT-4612}
+\def\school{Gjovik Univiristy Collage}
+\def\reportname{Assigment 1}
+% Spring, 2013 - Autumn, 2010 - Both are valid
+\def\semester{Spring 2014}
+
+\hypersetup
+{
+    pdftitle={\reportname},
+    pdfauthor={\name},
+    pdfsubject={\reportname},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue   
+}
+
+\fancypagestyle{titlefooter}
+{                                                                               
+    \fancyhf{}                                                                  
+    \fancyfoot[c]{\footnotesize This document was compiled on \today}           
+} 
+
+\begin{document}
+
+\begin{titlepage}                                                               
+    \begin{center}                                                                                                   
+                                                                                
+        \large \course\\                                                        
+        \large \school, \semester\\[0.4cm]                                       
+        \HRule\\[1.5cm]                                                         
+                                                                                
+        \begin{minipage}{0.4\textwidth}                                         
+            \begin{flushleft}                                                   
+                % Some lecturers does not want to know your name...
+                \small \emph{Author:} \name\\                                  
+                \small \emph{Student number:} \studentnumber\\                  
+            \end{flushleft}                                                     
+        \end{minipage}                                                          
+                                                                                
+        \ \\[7.0cm]                                                             
+        \LARGE\textbf{\reportname}                                              
+                                                                                
+    \end{center}                                                                
+    \thispagestyle{titlefooter}                                                 
+\end{titlepage}                                                                 
+                                                                                
+\tableofcontents                                                                
+\clearpage   
+
+\begin{abstract}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis pellentesque
+nibh. Curabitur rhoncus non risus sit amet pharetra. Praesent nisi libero,
+ultrices sed ultricies vitae, hendrerit id lectus. Nulla facilisi. Sed in
+adipiscing magna, at faucibus arcu. Mauris tristique consectetur diam, ultrices
+semper purus ornare vel. Cras posuere tempor pharetra. Donec suscipit convallis
+congue. In faucibus tempus lacus at viverra. Nulla facilisis felis non odio
+rutrum placerat. In hac habitasse platea dictumst. Donec tincidunt mauris
+augue, eget auctor tortor consectetur placerat. Sed at est et mauris congue
+egestas eu at lectus. Vivamus suscipit blandit iaculis. 
+
+\end{abstract}
+
+\section{Introduction}
+The first assigment in Machine Learning and Pattern Recognition 1. 
+
+\section{Data Analysis and Knowledge Representation}
+\subsection{Cartesian coordinate system}
+*Picture comming here*
+This is done first in matlab with the function gscatter(X,Y,Z)
+Since my lack of matlab skills I did play with Python and the matplotlib libary to make scripts that show the same thing
+to understand it better. The Python script:
+
+*Python script is comming here*
+
+
+Resultetd in mostly the same Coordinate system:
+*Picture is comming here*
+
+Possibilties to applye linear classification models..
+
+There is a possibility to apply a Classification here. We have 2 groups here. Label 1 and Label 2. Label 1 have a y max value on
+8, and a X max value on 9. Label 2 have a Y min on 9 and a X min on 11. So here can we split the Cordinate system with two lines.
+One line horizontial where Y= 8,5 and one vertical where X= 10. 
+
+Potential uncertainties in classification due to overlapping of samples in different classes...
+This group of cords are close so there can be some uncertanties. An other argument that can apply to more uncertanties are
+that there is small amount of train data. The statement about small amount of train-data can you easy see when you plot the test data, 
+where some of the cords it's outside the rules based on the traning data. 
+
+
+\subsection{Boundaaries}
+*Picture of test data in coordinate*
+
+
+\subsection{Areaplot}
+First i did build the Areaplot in Matlab, but here aswell i scriptet a Python Script with the libary matplotlib to understand
+more of the graph. 
+
+*Picture of matlab picture*
+
+*Python script*
+
+*Picture of python result*
+
+It's easy to see the two groups here on the vizualization. You can easy see the boundaaries on the Y-axis where the values are lower.
+
+\subsection{Weka 1}
+First thing i did was to convert the txt files with test and training data into arff files (train.arff and test.arff)
+
+Loaded the files into Weka,
+Using the Attribute Evaluator: ClassifierSubsetEval and Search Method: GreedyStepwise
+
+The output is following:
+\begin{lstlisting}[frame=single]
+=== Run information ===
+
+Evaluator:    weka.attributeSelection.ClassifierSubsetEval -B weka.classifiers.rules.ZeroR -T -H
+Search:weka.attributeSelection.GreedyStepwise -T -1.7976931348623157E308 -N -1
+Relation:     lol2
+Instances:    5
+Attributes:   2
+              var1
+              var2
+              
+Evaluation mode:evaluate on all training data
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+Greedy Stepwise (forwards).
+Start set: no attributes
+Merit of best subset found:    4.08 
+
+Attributesute Subset Evaluator (supervised, Class (numeric): 1 var1):
+ClassifierSubsetEval Subset Evaluator
+Learning scheme: weka.classifiers.rules.ZeroR
+Scheme options: 
+Hold out/test set: Training data
+Accuracy estimation: MAE
+
+Selected attributes: 
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single]
+=== Run information ===
+
+Evaluator:    weka.attributeSelection.ClassifierSubsetEval -B weka.classifiers.rules.ZeroR -T -H
+Search:weka.attributeSelection.GreedyStepwise -T -1.7976931348623157E308 -N -1
+Relation:     lol2
+Instances:    5
+Attributes:   2
+              var1
+              var2
+Evaluation mode:evaluate on all training data
+
+=== Attribute Selection on all input data ===
+Search Method:
+Greedy Stepwise (forwards).
+Start set:      no attributes
+Merit of best subset found:    3.44 
+
+Attribute Subset Evaluationvaluator (supervised, Class (numeric): 2 var2):
+Classifier Subset Evaluationvaluatoruator
+Learning scheme: weka.classifiers.rules.ZeroR
+Scheme options: 
+Hold out/test set: Training data
+Accuracy estimation: MAE
+
+Selected Attributettributes: 
+
+\end{lstlisting}
+
+\subsection{Weka 2}
+\section{Machine learning}
+\subsection{Computer program}
+\subsection{Techniques applied to increase generalization}
+\subsection{Complexity}
+\subsection{Metrics}
+
+\nocite{*}
+\bibliographystyle{acm}
+\bibliography{references}
+
+\end{document}
